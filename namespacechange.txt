@@ -1,0 +1,26 @@
+tony@lsd:~/workspace/drafts$ sudo unshare --time --fork --monotonic 100000 --boottime 100000 ./timetest
+i  wall(time.Now)  time.Since  dREAL    dMONO    dBOOT    MONO absoluto
+ 1 11:28:47.513  1.001s        1.001    1.001    1.001  105382.575
+ 2 11:28:48.514  2.002s        2.002    2.002    2.002  105383.576
+ 3 11:28:49.515  3.003s        3.003    3.003    3.003  105384.577
+ 4 11:28:50.516  4.004s        4.004    4.004    4.004  105385.578
+ 5 11:28:51.517  5.005s        5.005    5.005    5.005  105386.579
+ 6 11:28:52.518  6.006s        6.006    6.006    6.006  105387.580
+ 7 11:28:53.519  7.007s        7.007    7.007    7.007  105388.581
+ 8 11:28:54.520  8.008s        8.008    8.008    8.008  105389.582
+ 9 11:28:55.521  9.009s        9.009    9.009    9.009  105390.583
+10 11:28:56.522  10.01s       10.010   10.010   10.010  105391.584
+tony@lsd:~/workspace/drafts$ cat /proc/uptime
+sudo unshare -T -f --monotonic 100000 --boottime 100000 cat /proc/uptime
+5396.22 56512.11
+105396.23 56512.20
+tony@lsd:~/workspace/drafts$ sudo unshare -T -f --monotonic 100000 sleep 120 &
+sleep 1
+cat /proc/$(pgrep -n sleep)/timens_offsets
+echo "monotonic 500000 0" | sudo tee /proc/$(pgrep -n sleep)/timens_offsets
+[1] 71505
+monotonic      100000         0
+boottime            0         0
+monotonic 500000 0
+/proc/71510/timens_offsets: Permission denied (os error 13)
+tony@lsd:~/workspace/drafts$
