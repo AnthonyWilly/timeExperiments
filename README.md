@@ -13,7 +13,7 @@ Este projeto testa se é possível fazer um programa em Go perceber o tempo pass
 
 * **Sistema:** Linux x86_64 com kernel >= 5.6 e *time namespaces* habilitados.
 * **Ferramentas:** `unshare` (com suporte a `-T` / `--time`, `--monotonic` e `--boottime`), linguagem Go instalada e acesso ao `sudo`.
-* **⚠️ ATENÇÃO:** O Experimento 2 exige o uso de uma **Máquina Virtual (VM) descartável**. A execução alterará a hora global do sistema inteiro, o que afeta cron, logs, certificados e outros serviços.
+* **ATENÇÃO:** É recomendável usar **Máquina Virtual (VM) descartável** para o experimento 2. A execução alterará a hora global do sistema inteiro, o que afeta cron, logs, certificados e outros serviços.
 
 ## Como rodar (Para reprodução)
 
